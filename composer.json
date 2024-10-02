@@ -1,0 +1,13 @@
+{
+    "name": "clabi/projet-form-employes",
+    "authors": [
+        {
+            "name": "labianca"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "7.8.2",
+        "twig/twig": "3.3",
+        "monolog/monolog": "2.3"
+    }
+}

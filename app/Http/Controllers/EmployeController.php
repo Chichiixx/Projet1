@@ -70,4 +70,5 @@ class EmployeController extends Controller
             return view('vues/error', compact('monErreur'));
         }
     }
+
 }

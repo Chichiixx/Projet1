@@ -21,10 +21,39 @@ class EquipeController extends Controller
             return view('vues/error', compact('monErreur'));
         }
     }
-    publi_c function listerEquipe(){
+    public function listerEquipe(){
         $uneEquipeService = new ServiceEquipe();
         try{
             $mesEquipes = $uneEquipeService->getListeEquipe();
+        }catch (MonException $e){
+            $monErreur = $e->getMessage();
+            return view('vues/error',compact('monErreur'));
+        }catch (Exception $e){
+            $monErreur=$e->getMessage();
+            return view('vues/error', compact('monErreur'));
         }
+        return view ('vues/formEquipeLister', compact('mesEquipes'));
 }
+    public function modifier($id){
+        $serviceEquipe = new ServiceEquipe();
+        try{
+            $uneEquipe=$serviceEquipe->getEquipe($id);
+        }catch (Exception $e){
+            $monErreur=$e->getMessage();
+            return view('vues/error', compact('monErreur'));
+        }
+        return view('vues/formEquipeModifier', compact('uneEquipe'));
+    }
+    public function postmodifierEquipe(Request $request, $id){
+        try{
+            $code=$request->input('CodeEq');
+            $designation=$request->input('DesiEq');
+            $serviceEquipe = new ServiceEquipe();
+            $serviceEquipe->modificationEquipe($id,$code,$designation);
+            return view('home');
+        }catch (Exception $e){
+            $monErreur=$e->getMessage();
+            return view('vues/error', compact('monErreur'));
+        }
+    }
 }

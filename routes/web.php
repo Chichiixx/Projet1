@@ -22,8 +22,12 @@ Route::get('/ajouterEmploye', function(){
 Route::post('/postEmploye', 'App\Http\Controllers\EmployeController@postAJouterEmploye');
 Route::get('listerEmploye', 'App\Http\Controllers\EmployeController@ListerEmployes');
 Route::get('/modifierEmploye/{id}','App\Http\Controllers\EmployeController@modifier');
+Route::post('/postmodifierEmploye/{id}','App\Http\Controllers\EmployeController@postmodifier');
 Route::get('/ajouterEquipe', function(){
     return view('vues/formEquipeAjouter');
 });
-Route::get('listerEquipe', 'App\Http\Controllers\EquipeController@ListerEquipe');
+Route::get('/listerEquipe', 'App\Http\Controllers\EquipeController@ListerEquipe');
 Route::post('/postEquipe', 'App\Http\Controllers\EquipeController@postAjouterEquipe');
+Route::get('/modifierEquipe/{id}',
+    'App\Http\Controllers\EquipeController@modifier');
+Route::post('/postmodifierEquipe/{id}', 'App\Http\Controllers\EquipeController@postmodifierEquipe');
